@@ -1,0 +1,6 @@
+@ualax.api_HostAddress = http://localhost:5242
+
+GET {{ualax.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

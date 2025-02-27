@@ -1,0 +1,21 @@
+version: "3.9"
+name: "ualax"
+services:
+  ualax.api:
+    image: ${DOCKER_REGISTRY-}ualaxapi
+    container_name: ualax.api
+    build:
+      context: .
+      dockerfile: ualax.api/Dockerfile
+
+  postgres:
+      image: postgres:latest
+      container_name: ualax.database
+      environment:
+          POSTGRES_DB: ualax-database
+          POSTGRES_USER: ualax-admin
+          POSTGRES_PASSWORD: ualax-password
+      volumes:
+        - ./.containers/postgres_data:/var/lib/postgresql/data
+      ports:
+        - 5432:5432
