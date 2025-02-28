@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ualax.domain.Features.Follow;
 using ualax.domain.Features.Tweet;
 
 namespace ualax.domain.Features.User
@@ -8,18 +9,21 @@ namespace ualax.domain.Features.User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(50)]
+        [Column("username")]
         public string Username { get; set; }
 
+        [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public ICollection<TweetEntity> Tweets { get; set; } = new List<Tweet>();
+        public ICollection<TweetEntity> Tweets { get; set; } = new List<TweetEntity>();
 
-        public ICollection<Follow> Followers { get; set; } = new List<Follow>();
+        public ICollection<FollowEntity> Followers { get; set; } = new List<FollowEntity>();
 
-        public ICollection<Follow> Followed { get; set; } = new List<Follow>();
+        public ICollection<FollowEntity> Followed { get; set; } = new List<FollowEntity>();
     }
 }
