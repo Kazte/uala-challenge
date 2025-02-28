@@ -8,10 +8,14 @@ namespace ualax.domain.Features.Follow
     {
         
         [Required]
+        [Column("follower_id")]
         public int FollowerId { get; set; }
 
         [Required]
+        [Column("followed_id")]
         public int FollowedId { get; set; }
+
+        [Column("created_at")]
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         
