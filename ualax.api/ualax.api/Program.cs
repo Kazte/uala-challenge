@@ -38,7 +38,7 @@ namespace ualax.api
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            
             app.UseCookieUserIdMiddleware();
             // custom error middleware
             app.UseErrorHandlingMiddleware();
