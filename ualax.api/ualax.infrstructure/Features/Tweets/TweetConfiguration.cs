@@ -9,7 +9,7 @@ using ualax.domain.Features.Tweet;
 
 namespace ualax.infrastructure.Features.Tweets
 {
-    public class TweetsConfiguration : IEntityTypeConfiguration<TweetEntity>
+    public class TweetConfiguration : IEntityTypeConfiguration<TweetEntity>
     {
         public void Configure(EntityTypeBuilder<TweetEntity> builder)
         {

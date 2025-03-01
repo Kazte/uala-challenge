@@ -3,26 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ualax.application.Abstractions.Exceptions;
 using ualax.application.Features.Tweets;
 using ualax.domain.Features.Tweet;
 
 namespace ualax.infrastructure.Features.Tweets
 {
-    public class TweetService : ITweetsService
+    public class TweetService : ITweetService
     {
-        public Task<TweetEntity> CreateTweet(TweetEntity tweetEntity)
+        private readonly ITweetRepository _tweetRepository;
+
+        public TweetService(ITweetRepository tweetRepository)
         {
-            throw new NotImplementedException();
+            _tweetRepository = tweetRepository;
         }
 
-        public Task<bool> DeleteTweetById(int id)
+        public async Task<TweetEntity> CreateTweet(TweetEntity tweetEntity)
         {
-            throw new NotImplementedException();
+            return await _tweetRepository.CreateTweet(tweetEntity);
         }
 
-        public Task<TweetEntity> GetTweetById(int id)
+        public async Task DeleteTweetById(int id, int userId)
         {
-            throw new NotImplementedException();
+            var tweet = await _tweetRepository.GetTweetById(id);
+
+            if (tweet is null)
+            {
+                throw new NotFoundException($"Tweet with id {id} not found");
+            }
+
+            if (tweet.UserId != userId)
+            {
+                throw new ForbiddenAccessException();
+            }
+
+            var isDeleted = await _tweetRepository.DeleteTweetById(tweet);
+
+            if (!isDeleted)
+            {
+                throw new ApiException($"Failed to delete tweet with id {id}");
+            }
+        }
+
+        public async Task<TweetEntity> GetTweetById(int id)
+        {
+            var tweet = await _tweetRepository.GetTweetById(id);
+
+            if (tweet is null)
+            {
+                throw new NotFoundException($"Tweet with id {id} not found");
+            }
+
+            return tweet;
         }
 
         public Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username)

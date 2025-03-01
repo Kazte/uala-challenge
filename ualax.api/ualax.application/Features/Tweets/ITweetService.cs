@@ -2,11 +2,11 @@
 
 namespace ualax.application.Features.Tweets
 {
-    public interface ITweetsService
+    public interface ITweetService
     {
         Task<TweetEntity> CreateTweet(TweetEntity tweetEntity);
         Task<TweetEntity> GetTweetById(int id);
         Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username);
-        Task<bool> DeleteTweetById(int id);
+        Task DeleteTweetById(int id, int userId);
     }
 }
