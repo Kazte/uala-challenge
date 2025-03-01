@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using ualax.application.Abstractions;
 using ualax.application.Features.Users.Login;
 using ualax.application.Features.Users.Register;
 using SameSiteMode = Microsoft.AspNetCore.Http.SameSiteMode;
@@ -23,24 +24,26 @@ namespace ualax.api.Controllers
         {
             await _mediator.Send(command);
 
-            return Ok();
+            return Created();
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)
         {
-            var userHashed = await _mediator.Send(command);
+            var response = await _mediator.Send(command);
 
             var cookieOptions = new CookieOptions
             {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Strict
+                HttpOnly = false,
+                Secure = false,
+                SameSite = SameSiteMode.None,
             };
 
-            Response.Cookies.Append("username", userHashed, cookieOptions);
+            Response.Cookies.Append("userId", response.Data, cookieOptions);
 
-            return Ok(new { Message = "Login Successful" });
+
+            response.Data = null;
+            return Ok(response);
         }
     }
 }
