@@ -22,5 +22,10 @@ namespace ualax.application.Abstractions.Exceptions
         {
             StatusCode = statusCode;
         }
+
+        public ApiException(int statusCode)
+        {
+            StatusCode = statusCode;
+        }
     }
 }
