@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ualax.shared\ualax.shared.csproj" />
     <ProjectReference Include="..\ualax.shared\ualax.shared.csproj" />
   </ItemGroup>
 
