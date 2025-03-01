@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ualax.infrastructure", "ual
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AB93DC67-AD4F-452A-84BE-08616DA40B15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ualax.shared", "ualax.shared\ualax.shared.csproj", "{27A5AFC7-A18E-4FD9-82FD-CA1C3948ADA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AB93DC67-AD4F-452A-84BE-08616DA40B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB93DC67-AD4F-452A-84BE-08616DA40B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB93DC67-AD4F-452A-84BE-08616DA40B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A5AFC7-A18E-4FD9-82FD-CA1C3948ADA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A5AFC7-A18E-4FD9-82FD-CA1C3948ADA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A5AFC7-A18E-4FD9-82FD-CA1C3948ADA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A5AFC7-A18E-4FD9-82FD-CA1C3948ADA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

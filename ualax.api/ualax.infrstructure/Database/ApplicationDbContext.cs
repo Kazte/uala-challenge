@@ -4,6 +4,7 @@ using ualax.domain.Features.Follow;
 using ualax.domain.Features.Tweet;
 using ualax.domain.Features.User;
 using ualax.infrastructure.Features.Followers;
+using ualax.infrastructure.Features.Tweets;
 using ualax.infrastructure.Features.Users;
 
 namespace ualax.infrastructure.Database
@@ -37,6 +38,7 @@ namespace ualax.infrastructure.Database
             modelBuilder.HasDefaultSchema("public");
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new FollowConfiguration());
+            modelBuilder.ApplyConfiguration(new TweetConfiguration());
         }
     }
 }
