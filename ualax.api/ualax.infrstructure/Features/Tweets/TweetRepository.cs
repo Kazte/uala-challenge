@@ -41,11 +41,6 @@ namespace ualax.infrastructure.Features.Tweets
             return await _context.Tweets.AsNoTracking().SingleOrDefaultAsync(x => x.Id.Equals(id));
         }
 
-        public Task<int> GetTweetCount(Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<TweetEntity>> GetTweets(Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter, Func<IQueryable<TweetEntity>, IOrderedQueryable<TweetEntity>> orderBy, int limit, Cursor? cursor = null)
         {
             var sql = _context.Tweets.AsQueryable();

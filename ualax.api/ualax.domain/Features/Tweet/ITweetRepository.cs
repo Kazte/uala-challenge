@@ -16,7 +16,5 @@ namespace ualax.domain.Features.Tweet
             Func<IQueryable<TweetEntity>, IOrderedQueryable<TweetEntity>> orderBy,
             int limit,
             Cursor? cursor = null);
-
-        public Task<int> GetTweetCount(Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter);
     }
 }
