@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
+using ualax.application.Abstractions.Exceptions;
 
 namespace ualax.application.Features.Follows.Command.Follow
 {
@@ -18,6 +14,11 @@ namespace ualax.application.Features.Follows.Command.Follow
 
         public async Task Handle(FollowCommand request, CancellationToken cancellationToken)
         {
+            if (request.FollowerId.Equals(request.FollowedId))
+            {
+                throw new ApiException("You can't follow yourself");
+            }
+
             await _followService.Follow(request.FollowerId, request.FollowedId);
         }
     }

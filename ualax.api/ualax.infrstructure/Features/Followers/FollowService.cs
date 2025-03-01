@@ -25,11 +25,6 @@ namespace ualax.infrastructure.Features.Followers
                 throw new NotFoundException("Followed not found");
             }
 
-            if (followerId == followedId)
-            {
-                throw new ApiException("You can't follow yourself");
-            }
-
             if (await _followRepository.IsFollowing(followerId, followedId))
             {
                 throw new ApiException("You are already following this user");
@@ -49,11 +44,6 @@ namespace ualax.infrastructure.Features.Followers
             if (!followedExists)
             {
                 throw new NotFoundException("Followed not found");
-            }
-
-            if (followerId == followedId)
-            {
-                throw new ApiException("You can't unfollow yourself");
             }
 
             if (!await _followRepository.IsFollowing(followerId, followedId))

@@ -8,7 +8,7 @@ using ualax.application.Mappings;
 
 namespace ualax.application
 {
-    public static class DependencyInjection
+    public static class ServiceCollections
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
@@ -23,10 +23,6 @@ namespace ualax.application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
-
-            //services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 
             return services;
         }
