@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ualax.application.Abstractions.Exceptions
 {
-    public class ForbiddenAccessException : Exception
+    public class ForbiddenAccessException : ApiException
     {
-        public ForbiddenAccessException() : base() { }
+        public ForbiddenAccessException() : base(403, "You are not allowed") { }
     }
 }
