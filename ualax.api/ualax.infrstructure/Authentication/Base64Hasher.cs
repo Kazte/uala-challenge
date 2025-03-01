@@ -3,7 +3,7 @@ using ualax.application.Abstractions.Authentication;
 
 namespace ualax.infrastructure.Authentication
 {
-    public class UsernameHasher : IHasher
+    public class Base64Hasher : IHasher
     {
         public string Hash(string key)
         {
