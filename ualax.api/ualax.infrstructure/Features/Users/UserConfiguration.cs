@@ -15,6 +15,10 @@ namespace ualax.infrastructure.Features.Users
 
             builder.HasIndex(x => x.Username).IsUnique();
 
+            builder.HasMany(x=>x.Tweets)
+                .WithOne(x=>x.User)
+                .HasForeignKey(x => x.UserId);
+
             builder.HasMany(u => u.Followed)
                      .WithOne(f => f.Follower)
                      .HasForeignKey(f => f.FollowerId);

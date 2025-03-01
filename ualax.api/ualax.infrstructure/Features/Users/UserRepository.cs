@@ -20,6 +20,11 @@ namespace ualax.infrastructure.Features.Users
             return e.Entity;
         }
 
+        public async Task<UserEntity?> GetById(int id)
+        {
+            return await _context.Users.AsNoTracking().SingleOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
         public async Task<UserEntity?> GetByUsername(string username)
         {
             // AsNoTracking ->  Esto mejora el rendimiento a la hora de 

@@ -1,5 +1,4 @@
-﻿using ErrorOr;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using ualax.application.Abstractions.Authentication;
 using ualax.application.Abstractions.Exceptions;
 using ualax.application.Features.Users;
@@ -20,6 +19,13 @@ namespace ualax.infrastructure.Features.Users
             _hasher = hasher;
         }
 
+        public async Task<bool> IsUserExists(int id)
+        {
+            var user = await _userRepository.GetById(id);
+
+            return user is null ? false : true;
+        }
+
         public async Task<string> LoginUser(string username)
         {
             var user = await _userRepository.GetByUsername(username);
@@ -29,7 +35,7 @@ namespace ualax.infrastructure.Features.Users
                 throw new NotFoundException($"User with username {username} not found");
             }
 
-            return _hasher.Hash(user.Username);
+            return _hasher.Hash(user.Id.ToString());
         }
 
         public async Task RegisterUser(string username)
