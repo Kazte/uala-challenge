@@ -10,5 +10,6 @@ namespace ualax.domain.Features.User
     {
         Task<UserEntity> Add(UserEntity user);
         Task<UserEntity?> GetByUsername(string username);
+        Task<UserEntity?> GetById(int id);
     }
 }
