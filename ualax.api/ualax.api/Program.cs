@@ -16,9 +16,16 @@ namespace ualax.api
             builder.Services.AddAuthenticationServices();
             builder.Services.AddRepositories();
             builder.Services.AddDatabase(builder.Configuration);
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.Configure<RouteOptions>(opt =>
+            {
+                opt.LowercaseUrls = true;
+            });
 
             var app = builder.Build();
 
