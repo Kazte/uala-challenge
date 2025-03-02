@@ -38,12 +38,20 @@ namespace ualax.infrastructure.Features.Tweets
 
         public async Task<TweetEntity?> GetTweetById(int id)
         {
-            return await _context.Tweets.AsNoTracking().SingleOrDefaultAsync(x => x.Id.Equals(id));
+            return await _context.Tweets.Include(x=>x.User).AsNoTracking().SingleOrDefaultAsync(x => x.Id.Equals(id));
         }
 
         public async Task<IEnumerable<TweetEntity>> GetTweets(Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter, Func<IQueryable<TweetEntity>, IOrderedQueryable<TweetEntity>> orderBy, int limit, Cursor? cursor = null)
         {
             var sql = _context.Tweets.AsQueryable();
+
+            if (cursor != null)
+            {
+                
+                sql = sql.Where(x => EF.Functions.LessThanOrEqual(
+                    ValueTuple.Create(x.CreatedAt, x.Id),
+                    ValueTuple.Create(cursor.Date, cursor.Id)));
+            }
 
             if (filter != null)
             {
@@ -53,14 +61,6 @@ namespace ualax.infrastructure.Features.Tweets
             if (orderBy != null)
             {
                 sql = orderBy(sql);
-            }
-
-            if (cursor != null)
-            {
-                
-                sql = sql.Where(x => EF.Functions.LessThanOrEqual(
-                    ValueTuple.Create(x.CreatedAt, x.Id),
-                    ValueTuple.Create(cursor.Date, cursor.Id)));
             }
 
             var res = await sql.Take(limit + 1).Include(x => x.User).AsNoTracking().ToListAsync();
