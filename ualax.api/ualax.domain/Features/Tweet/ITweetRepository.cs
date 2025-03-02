@@ -13,7 +13,6 @@ namespace ualax.domain.Features.Tweet
         public Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username);
         public Task<IEnumerable<TweetEntity>> GetTweets(
             Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter,
-            Func<IQueryable<TweetEntity>, IOrderedQueryable<TweetEntity>> orderBy,
             int limit,
             Cursor? cursor = null);
     }

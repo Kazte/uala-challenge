@@ -23,10 +23,7 @@ namespace ualax.infrastructure.Features.Timeline
             Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter = query =>
                 query.Where(t => ids.Contains(t.UserId));
 
-            Func<IQueryable<TweetEntity>, IOrderedQueryable<TweetEntity>> orderBy = query =>
-                query.OrderByDescending(t => t.CreatedAt);
-
-            var tweets = await _tweetRepository.GetTweets(filter, orderBy, limit, cursor);
+            var tweets = await _tweetRepository.GetTweets(filter,  limit, cursor);
 
             return tweets.ToList() ;
         }
