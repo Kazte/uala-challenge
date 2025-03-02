@@ -62,10 +62,5 @@ namespace ualax.infrastructure.Features.Tweets
 
             return res;
         }
-
-        public async Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username)
-        {
-            return await _context.Tweets.Where(x => x.User.Username.Equals(username)).AsNoTracking().ToListAsync();
-        }
     }
 }
