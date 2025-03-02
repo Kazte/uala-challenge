@@ -28,7 +28,9 @@ namespace ualax.application.Features.Timeline.Queries.GetTimeline
 
             DateTime? nextDate = items.Count > request.Limit ? items[^1].CreatedAt : null;
             int? nextId = items.Count > request.Limit ? items[^1].Id : null;
-            items.RemoveAt(items.Count - 1);
+            
+            if (items.Count > request.Limit)
+                items.RemoveAt(items.Count - 1);
 
             return new Response<TimelineResponse>(new TimelineResponse
             {
