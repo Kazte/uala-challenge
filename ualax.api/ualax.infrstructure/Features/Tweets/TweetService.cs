@@ -23,7 +23,7 @@ namespace ualax.infrastructure.Features.Tweets
             return await _tweetRepository.CreateTweet(tweetEntity);
         }
 
-        public async Task DeleteTweetById(int id, int userId)
+        public async Task DeleteTweet(int id, int userId)
         {
             var tweet = await _tweetRepository.GetTweetById(id);
 
@@ -37,7 +37,7 @@ namespace ualax.infrastructure.Features.Tweets
                 throw new ForbiddenAccessException();
             }
 
-            var isDeleted = await _tweetRepository.DeleteTweetById(tweet);
+            var isDeleted = await _tweetRepository.DeleteTweet(tweet);
 
             if (!isDeleted)
             {
@@ -57,7 +57,7 @@ namespace ualax.infrastructure.Features.Tweets
             return tweet;
         }
 
-        public Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username)
+        public Task<IEnumerable<TweetEntity>> GetTweetsFromUser(int userId)
         {
             throw new NotImplementedException();
         }

@@ -6,7 +6,7 @@ namespace ualax.application.Features.Tweets
     {
         Task<TweetEntity> CreateTweet(TweetEntity tweetEntity);
         Task<TweetEntity> GetTweetById(int id);
-        Task<IEnumerable<TweetEntity>> GetTweetsFromUser(string username);
-        Task DeleteTweetById(int id, int userId);
+        Task<IEnumerable<TweetEntity>> GetTweetsFromUser(int id);
+        Task DeleteTweet(int id, int userId);
     }
 }
