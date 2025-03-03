@@ -1,7 +1,7 @@
 ﻿using ualax.application.Features.Timeline;
-using ualax.domain.Abstractions;
 using ualax.domain.Features.Follow;
 using ualax.domain.Features.Tweet;
+using ualax.shared.Common;
 
 namespace ualax.infrastructure.Features.Timeline
 {
@@ -23,9 +23,9 @@ namespace ualax.infrastructure.Features.Timeline
             Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter = query =>
                 query.Where(t => ids.Contains(t.UserId));
 
-            var tweets = await _tweetRepository.GetTweets(filter,  limit, cursor);
+            var tweets = await _tweetRepository.GetTweets(filter, limit, cursor);
 
-            return tweets.ToList() ;
+            return tweets.ToList();
         }
     }
 }
