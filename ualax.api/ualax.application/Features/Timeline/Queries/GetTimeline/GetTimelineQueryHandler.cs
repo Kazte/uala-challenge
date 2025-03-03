@@ -3,7 +3,7 @@ using MediatR;
 using ualax.application.Abstractions;
 using ualax.application.Features.Timeline.Models;
 using ualax.application.Features.Tweets.Models;
-using ualax.domain.Abstractions;
+using ualax.shared.Common;
 
 namespace ualax.application.Features.Timeline.Queries.GetTimeline
 {

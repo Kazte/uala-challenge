@@ -2,7 +2,7 @@
 using System.Text.Json;
 using ualax.shared.Extensions;
 
-namespace ualax.domain.Abstractions
+namespace ualax.shared.Common
 {
     public class Cursor
     {
@@ -48,7 +48,7 @@ namespace ualax.domain.Abstractions
                 var json = Encoding.UTF8.GetString(Convert.FromBase64String(cursor));
                 return JsonSerializer.Deserialize<Cursor>(json);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
