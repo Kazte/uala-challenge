@@ -1,4 +1,5 @@
-﻿using FakeItEasy;
+﻿using System.Linq.Expressions;
+using FakeItEasy;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using MockQueryable;
@@ -46,6 +47,40 @@ namespace ualax.test.Features.Tweets.Repository
                     x => x.Id.Should().Be(5),
                     x => x.Id.Should().Be(3)
                 );
+        }
+
+        [Fact]
+        public async Task ReturnsUserTweets_WhenUserFilter()
+        {
+            // arrange
+            var userId = 100;
+            var mockDbSet = TweetsMock.AllTweets.AsQueryable().BuildMock().BuildMockDbSet();
+            A.CallTo(() => _context.Tweets).Returns(mockDbSet);
+            Func<IQueryable<TweetEntity>, IQueryable<TweetEntity>> filter = q => q.Where(x => x.UserId == userId);
+
+            // act
+            var result = await _tweetRepository.GetTweets(filter, 10);
+
+            // assert
+            result.Should().HaveCount(2);
+            result.Should().OnlyContain(x => x.UserId == userId);
+        }
+
+        [Fact]
+        public async Task ReturnTweets_WhenLimit()
+        {
+            // arrange
+            var tweets = TweetsMock.CreateTweetsFromUser(999, 20);
+            var mockDbSet = tweets.AsQueryable().BuildMock().BuildMockDbSet();
+            A.CallTo(() => _context.Tweets).Returns(mockDbSet);
+
+            var limit = 10;
+
+            // act
+            var result = await _tweetRepository.GetTweets(null, limit);
+
+            // assert
+            result.Should().HaveCount(limit + 1);
         }
     }
 }
