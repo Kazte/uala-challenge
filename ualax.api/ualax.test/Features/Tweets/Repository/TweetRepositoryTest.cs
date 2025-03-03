@@ -1,14 +1,16 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using MockQueryable;
 using MockQueryable.FakeItEasy;
+using NuGet.Protocol.Core.Types;
 using ualax.application.Abstractions.Database;
 using ualax.domain.Features.Tweet;
 using ualax.infrastructure.Features.Tweets;
 using ualax.shared.Common;
 using ualax.test.Mocks.Tweets;
 
-namespace ualax.test.Features.Timeline.Repository
+namespace ualax.test.Features.Tweets.Repository
 {
     public class TweetRepositoryTest
     {
