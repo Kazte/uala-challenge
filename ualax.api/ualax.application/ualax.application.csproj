@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\ualax.domain\ualax.domain.csproj" />
+		<ProjectReference Include="..\ualax.shared\ualax.shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
