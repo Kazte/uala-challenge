@@ -59,6 +59,9 @@ Ejecutar lo que se encuentra en `database.sql` en el DBeaver para crear las estr
 
 ## Endpoints
 
+> [!IMPORTANT]  
+> El port de la URL base puede cambiar, una vez iniciada la aplicacion copiar el port del Swagger.
+
 ### Users
 
 #### Register
