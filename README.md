@@ -38,7 +38,8 @@ La documentacion de la aplicacion se encuentra en la wiki del repositorio.
 ### Ejecutar la aplicacion
 
 Abrir la solucion con Visual Studio, corroborar que el startup item este `docker-compose` y darle a play.
-Nota: Antes de darle a play tener docker compose abierto.
+> [!IMPORTANT]  
+> Antes de darle a play tener `docker compose` abierto.
 
 ![image](https://github.com/user-attachments/assets/05dddbd4-0410-4835-bd8c-b687361e166e)
 
