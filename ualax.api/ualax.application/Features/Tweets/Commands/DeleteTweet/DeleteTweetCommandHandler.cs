@@ -19,7 +19,7 @@ namespace ualax.application.Features.Tweets.Commands.DeleteTweet
 
         public async Task Handle(DeleteTweetCommand request, CancellationToken cancellationToken)
         {
-            await _tweetService.DeleteTweetById(request.Id, request.UserId);
+            await _tweetService.DeleteTweet(request.Id, request.UserId);
         }
     }
 }
