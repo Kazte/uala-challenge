@@ -1,4 +1,4 @@
-﻿using ualax.domain.Abstractions;
+﻿using ualax.shared.Common;
 
 namespace ualax.domain.Features.Tweet
 {
@@ -6,7 +6,7 @@ namespace ualax.domain.Features.Tweet
     {
         public Task<TweetEntity> CreateTweet(TweetEntity tweetEntity);
 
-        public Task<bool> DeleteTweetById(TweetEntity tweetEntity);
+        public Task<bool> DeleteTweet(TweetEntity tweetEntity);
 
         public Task<TweetEntity?> GetTweetById(int id);
         public Task<IEnumerable<TweetEntity>> GetTweets(

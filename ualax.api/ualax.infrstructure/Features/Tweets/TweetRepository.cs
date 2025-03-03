@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ualax.application.Abstractions.Database;
-using ualax.domain.Abstractions;
 using ualax.domain.Features.Tweet;
+using ualax.shared.Common;
 
 namespace ualax.infrastructure.Features.Tweets
 {
@@ -27,7 +21,7 @@ namespace ualax.infrastructure.Features.Tweets
             return e.Entity;
         }
 
-        public async Task<bool> DeleteTweetById(TweetEntity tweetEntity)
+        public async Task<bool> DeleteTweet(TweetEntity tweetEntity)
         {
             var res = _context.Tweets.Remove(tweetEntity);
             var isDeleted = res.State == EntityState.Deleted;
@@ -48,9 +42,8 @@ namespace ualax.infrastructure.Features.Tweets
             if (cursor != null)
             {
 
-                sql = sql.Where(x => EF.Functions.LessThanOrEqual(
-                    ValueTuple.Create(x.CreatedAt, x.Id),
-                    ValueTuple.Create(cursor.Date, cursor.Id)));
+                sql = sql.Where(x => x.CreatedAt < cursor.Date ||
+                               (x.CreatedAt == cursor.Date && x.Id <= cursor.Id));
             }
 
             if (filter != null)
