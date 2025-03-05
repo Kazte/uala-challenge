@@ -41,10 +41,10 @@ namespace ualax.infrastructure
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ITweetService, TweetService>();
-            services.AddTransient<IFollowService, FollowService>();
-            services.AddTransient<ITimelineService, TimelineService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITweetService, TweetService>();
+            services.AddScoped<IFollowService, FollowService>();
+            services.AddScoped<ITimelineService, TimelineService>();
 
             return services;
         }
